@@ -37,6 +37,14 @@ int lives;
 long score;
 int status; // status handled in timer
 
+// todo: let's try to not having to declare these "public"
+int weite;
+int level;
+int skill_level;
+
+extern int shipnum;	
+extern HighScore highscore; /* todo: not a global variable! */
+
 #define GAME_LOOP 1
 #define GAME_NEXTLEVEL 2
 #define GAME_PAUSED 3

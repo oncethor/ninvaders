@@ -83,7 +83,7 @@ void waitForReturn()
 {
 	char b[2];
 	fprintf(stderr, "...Please press <Enter> to read on...");
-	fgets(b, sizeof(b), stdin);
+	char *s = fgets(b, sizeof(b), stdin);
 }
 
 /**

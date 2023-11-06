@@ -26,6 +26,19 @@
 #include "player.h"
 #include "nInvaders.h"
 
+int alienshotnum;
+Aliens aliens;
+int bunker[BUNKERHEIGHT][BUNKERWIDTH + 1];	
+// todo: move to structure
+int lowest_ship[ALIENS_MAX_NUMBER_X];
+int alienshotx[ALIENS_MAX_MISSILES];
+int alienshoty[ALIENS_MAX_MISSILES];
+int alienBlock[ALIENS_MAX_NUMBER_Y][ALIENS_MAX_NUMBER_X];
+int shipnum;	
+
+extern int skill_level;
+extern int level;
+
 /**
  * initialize aliens attributes
  */
@@ -163,7 +176,7 @@ void render()
 	aliens.right=-1;
 	aliens.bottom=-1;
 	shipnum=0;
-	for (k=0;k<11;k++) {
+	for (k=0;k<ALIENS_MAX_NUMBER_X;k++) {
 		lowest_ship[k]=-1;
 	}
 	

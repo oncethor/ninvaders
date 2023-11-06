@@ -26,6 +26,7 @@
 #include <stdio.h>	
 #include <string.h>
 
+HighScore highscore; /* todo: not a global variable! */
 
 /**************************************************************************************************
  * 
@@ -154,10 +155,11 @@ static void fget_HighScoreData (HighScoreEntry *hs_e, FILE* fp)
 {
         int  n;
         for (n = 0; n < MAX_HIGHSCORE_ENTRIES; n++) {
-                fscanf ( fp, "%i %s\n", &hs_e->score, hs_e->name );
-		hs_e++;
+            int s = fscanf ( fp, "%i %s\n", &hs_e->score, hs_e->name );
+			if (s < 2) puts ("(WW) fget_HighScoreData: not enough values read");
+			hs_e++;
         }
-        fscanf (fp, "\n");
+        n = fscanf (fp, "\n");
 }
 
 
@@ -181,7 +183,8 @@ HighScore readHighScore (){
 	if (( fp_HighScore = fopen (HIGHSCORE_FILE, "r") ) != NULL ) {
 		
 		/* read header */
-		fscanf (fp_HighScore, "%[^\n]\nv%[^\n]\n\n", hs_id, hs_version);
+		int s = fscanf (fp_HighScore, "%[^\n]\nv%[^\n]\n\n", hs_id, hs_version);
+		if (s < 2)  puts ("(WW) readHighScore: not enough values read");
 	
 		if ( strcmp (hs_id, HIGHSCORE_ID) != 0 ) {
 			puts ("(EE) readHighScore: highscore file has wrong header");
@@ -194,12 +197,13 @@ HighScore readHighScore (){
 		}
 	
 		/* read data */
-		fscanf (fp_HighScore, "beginner\n");
-	        fget_HighScoreData (hs.beginner, fp_HighScore); 
-		fscanf (fp_HighScore, "normal\n");
+		s = fscanf (fp_HighScore, "beginner\n");
+	    fget_HighScoreData (hs.beginner, fp_HighScore); 
+		s += fscanf (fp_HighScore, "normal\n");
 		fget_HighScoreData (hs.normal,   fp_HighScore);
-		fscanf (fp_HighScore, "expert\n");
+		s += fscanf (fp_HighScore, "expert\n");
 		fget_HighScoreData (hs.expert,   fp_HighScore);
+
 		
 		/* close file */
 		fclose (fp_HighScore);

@@ -51,6 +51,8 @@ WINDOW *wUfo;
 WINDOW *wStatus;
 WINDOW *wTitleScreen;
 
+extern HighScore highscore; /* todo: not a global variable! */
+
 /**
  * initialize player sprites
  */

@@ -40,6 +40,12 @@ struct Player {
        
 Player player;
 
+extern Aliens aliens;
+extern int skill_level;
+extern int weite;
+extern int level;
+extern int shipnum;
+
 /**
  * initialize player attributes
  */

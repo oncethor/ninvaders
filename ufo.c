@@ -26,7 +26,11 @@
 #include "aliens.h"
 #include "nInvaders.h"
 
+Ufo ufo;
+
 static int fShowUfo = 0;
+
+extern Aliens aliens;
 
 /**
  * initialize ufo attributes

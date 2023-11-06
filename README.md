@@ -15,6 +15,15 @@ Official Site: http://ninvaders.sourceforge.net/
 
 1. INSTALLING
 -------------
+To build it you should use the included Makefile and run `make`. If it
+doesn't work, you will have to try and produce a new one with:
+```
+./configure --prefix=<your prefered installation dir>
+make
+```
+What follows are the original instructions. I have fixed it for the 
+gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0 compiler so far.
+
 Compiling and installing should be really straightforward, just type in 
 "make" on your command prompt and you'll get the binary file. If not, please
 edit the makefile. Once you have compiled it, copy it (as root) to your
